@@ -69,7 +69,6 @@ namespace WeatherForecastSiemens
 
             var apiInstance = new APIsApi();
             InlineResponse200 resultReal;
-            InlineResponse2001 resultForecast;
             try
             {
                 resultReal = apiInstance.RealtimeWeather(cbOras.Text);
@@ -79,11 +78,26 @@ namespace WeatherForecastSiemens
             {
                 Debug.Print("Exception when calling APIsApi.RealtimeWeather: " + f.Message);
             }
+            addList7Days();
+        }
 
+        private void addList7Days()
+        {
+            var apiInstance = new APIsApi();
+            InlineResponse2001 resultForecast;
             try
             {
-                resultForecast = apiInstance.ForecastWeather(cbOras.Text,3,DateTime.Parse(date),12);
-                Debug.WriteLine(resultForecast);
+                foreach (ListViewItem itm in lv7Days.Items)
+                {
+                    itm.Remove();
+                }
+                for (int i = 0; i < 7; i++)
+                {
+                    resultForecast = apiInstance.ForecastWeather(cbOras.Text, i+1, DateTime.Parse(date), 12);
+                    ListViewItem item = new ListViewItem(resultForecast.Location.Localtime);
+                    item.SubItems.Add(resultForecast.Current.TempC.ToString());
+                    lv7Days.Items.Add(item);
+                }
             }
             catch (Exception f)
             {
