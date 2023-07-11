@@ -29,6 +29,18 @@ namespace WeatherForecastSiemens
             this.localtime = localtime;
         }
 
+        public Location()
+        {
+            this.name = "";
+            this.region = "";
+            this.country = "";
+            this.lat = "";
+            this.lon = "";
+            this.tz_id = "";
+            this.localtime_epoch = "";
+            this.localtime = "";
+        }
+
         public string Name { get { return name;} set { name = value; } }
         public string Region { get { return region;} 
             set
