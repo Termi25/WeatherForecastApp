@@ -221,7 +221,7 @@ namespace WeatherForecastSiemens
                 resultAstro = apiInstance.Astronomy(cbOras.Text, DateTime.Parse(date));
                 tbAstro.Text="City: "+resultAstro.Location.Name+Environment.NewLine+
                     "Country: "+resultAstro.Location.Country+Environment.NewLine+
-                    "Local time: "+resultAstro.Location.LocaltimeEpoch+Environment.NewLine+
+                    "Local time: "+resultAstro.Location.Localtime+Environment.NewLine+
                     "Sunrise: "+resultAstro.Astronomy.Astro.Sunrise+Environment.NewLine+
                     "Sunset: "+resultAstro.Astronomy.Astro.Sunset+Environment.NewLine+
                     "Moon phase: "+resultAstro.Astronomy.Astro.MoonPhase;
