@@ -99,19 +99,32 @@ namespace WeatherForecastSiemens
                 {
                     itm.Remove();
                 }
+                foreach (ListViewItem itm in lv7Days.Items)
+                {
+                    itm.Remove();
+                }
                 resultForecast = apiInstance.ForecastWeather(cbOras.Text, 1, DateTime.Parse(date));
+                //The WeatherApi.com Forecast Method does not work, even after fixing some issues with it
+                //when it comes to getting the values from the json given by the request
                 for (int i = 0; i < 23; i++)
                 {
                     ListViewItem item = new ListViewItem(resultForecast.Location.Localtime);
+                    ListViewItem item2 = new ListViewItem(resultForecast.Location.Localtime);
                     if (cbTempUnit.Text == "Celsius")
                     {
                         item.SubItems.Add(resultForecast.Current.TempC.ToString() + " °C");
+                        item2.SubItems.Add(resultForecast.Current.TempC.ToString() + " °C");
                     }
                     else
                     {
                         item.SubItems.Add(resultForecast.Current.TempC.ToString()+ " °F");
+                        item2.SubItems.Add(resultForecast.Current.TempC.ToString() + " °F");
                     }
                     lvCurrentDay.Items.Add(item);
+                    if (i < 7)
+                    {
+                        lv7Days.Items.Add(item2);
+                    }
                 }
             }
             catch (Exception f)
