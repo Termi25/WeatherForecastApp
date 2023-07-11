@@ -49,6 +49,7 @@
             this.panel4 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -174,7 +175,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(223, 55);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(77, 62);
             this.pictureBox1.TabIndex = 10;
@@ -245,11 +246,19 @@
             this.label5.TabIndex = 17;
             this.label5.Text = "Precipitation";
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(670, 21);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(283, 477);
+            this.panel1.TabIndex = 18;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 524);
+            this.ClientSize = new System.Drawing.Size(976, 524);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel4);
@@ -300,6 +309,7 @@
         private System.Windows.Forms.Label panel4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

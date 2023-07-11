@@ -103,7 +103,14 @@ namespace WeatherForecastSiemens
                 for (int i = 0; i < 23; i++)
                 {
                     ListViewItem item = new ListViewItem(resultForecast.Location.Localtime);
-                    item.SubItems.Add(resultForecast.Current.TempC.ToString());
+                    if (cbTempUnit.Text == "Celsius")
+                    {
+                        item.SubItems.Add(resultForecast.Current.TempC.ToString() + " °C");
+                    }
+                    else
+                    {
+                        item.SubItems.Add(resultForecast.Current.TempC.ToString()+ " °F");
+                    }
                     lvCurrentDay.Items.Add(item);
                 }
             }
@@ -136,6 +143,7 @@ namespace WeatherForecastSiemens
             {
                 Debug.Print("Exception when calling APIsApi.RealtimeWeather: " + f.Message);
             }
+            addCurrentDay();
         }
 
         private void cbOras_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,6 +185,7 @@ namespace WeatherForecastSiemens
             {
                 Debug.Print("Exception when calling APIsApi.Astronomy: " + f.Message);
             }
+            addCurrentDay();
         }
     }
 }
