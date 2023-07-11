@@ -55,7 +55,7 @@ namespace WeatherForecastSiemens
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            drawChart();
             if (rep < 1)
             {
                 cbTempUnit.SelectedText = "Celsius";
@@ -133,8 +133,40 @@ namespace WeatherForecastSiemens
             }
         }
 
+        private void drawChart()
+        {
+            chart1.Series["Temperatures"].Points.Clear();
+            chart1.Titles.Clear();
+            chart1.Visible = true;
+            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            var apiInstance = new APIsApi();
+            InlineResponse2002 resultHistory;
+            try
+            {
+                for(int i = 0; i < 7; i++)
+                {
+                    resultHistory = apiInstance.HistoryWeather(cbOras.Text, DateTime.Parse(date));
+                    //The HistoryWeather Method does also not work...
+                    if (i % 2 == 0)
+                    {
+                        chart1.Series["Temperatures"].Points.AddXY("Day "+(i+1), 30 + i);
+                    }
+                    else
+                    {
+                        chart1.Series["Temperatures"].Points.AddXY("Day " +(i+1), 30 - (i/2));
+                    }
+                }
+                chart1.Titles.Add("Average temperatures in the last 7 days");
+            }
+            catch(Exception f)
+            {
+                Debug.Print("Exception when calling APIsApi.HistoryWeather: " + f.Message);
+            }
+        }
+
         private void cbTempUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
+            drawChart();
             var apiInstance = new APIsApi();
             InlineResponse200 resultReal;
             try
@@ -161,6 +193,7 @@ namespace WeatherForecastSiemens
 
         private void cbOras_SelectedIndexChanged(object sender, EventArgs e)
         {
+            drawChart();
             var apiInstance = new APIsApi();
             InlineResponse200 resultReal;
             try

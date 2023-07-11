@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lvCurrentDay = new System.Windows.Forms.ListView();
             this.TimeOfDay = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Temperature = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,8 +52,9 @@
             this.panel4 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // lvCurrentDay
@@ -95,7 +99,7 @@
             this.lv7Days.Location = new System.Drawing.Point(327, 146);
             this.lv7Days.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lv7Days.Name = "lv7Days";
-            this.lv7Days.Size = new System.Drawing.Size(313, 227);
+            this.lv7Days.Size = new System.Drawing.Size(313, 194);
             this.lv7Days.TabIndex = 3;
             this.lv7Days.UseCompatibleStateImageBehavior = false;
             this.lv7Days.View = System.Windows.Forms.View.Details;
@@ -147,18 +151,19 @@
             // 
             // tbAstro
             // 
-            this.tbAstro.Location = new System.Drawing.Point(326, 397);
+            this.tbAstro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAstro.Location = new System.Drawing.Point(326, 364);
             this.tbAstro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbAstro.Multiline = true;
             this.tbAstro.Name = "tbAstro";
-            this.tbAstro.Size = new System.Drawing.Size(313, 101);
+            this.tbAstro.Size = new System.Drawing.Size(313, 134);
             this.tbAstro.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(326, 375);
+            this.label3.Location = new System.Drawing.Point(326, 342);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 20);
             this.label3.TabIndex = 8;
@@ -246,19 +251,28 @@
             this.label5.TabIndex = 17;
             this.label5.Text = "Precipitation";
             // 
-            // panel1
+            // chart1
             // 
-            this.panel1.Location = new System.Drawing.Point(670, 21);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(283, 477);
-            this.panel1.TabIndex = 18;
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
+            this.chart1.Location = new System.Drawing.Point(655, 21);
+            this.chart1.Name = "chart1";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Temperatures";
+            this.chart1.Series.Add(series4);
+            this.chart1.Size = new System.Drawing.Size(422, 477);
+            this.chart1.TabIndex = 18;
+            this.chart1.Text = "chart1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(976, 524);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1109, 524);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel4);
@@ -281,6 +295,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -309,7 +324,7 @@
         private System.Windows.Forms.Label panel4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 
