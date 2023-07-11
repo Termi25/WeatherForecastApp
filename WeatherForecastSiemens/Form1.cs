@@ -23,6 +23,8 @@ namespace WeatherForecastSiemens
         string[] city = { "Berlin","Bucharest","Paris","Rome" };
         string date;
         int rep = 0;
+        int citychange;
+        int tempchange;
         CurrentWeather nou;
         public Form1()
         {
@@ -34,10 +36,12 @@ namespace WeatherForecastSiemens
             this.cbTempUnit.DataSource = unitM;
             cbTempUnit.SelectedItem = null;
             cbTempUnit.SelectedText = "Celsius";
-
+            cbTempUnit.Text = "Celsius";
+            
             this.cbOras.DataSource = city;
             cbOras.SelectedItem = null;
             cbOras.SelectedText = "Berlin";
+            cbOras.Text = "Berlin";
 
             Timer t= new Timer();
             t.Interval = 60000;
@@ -58,20 +62,32 @@ namespace WeatherForecastSiemens
             {
                 cbTempUnit.SelectedText = "Celsius";
                 cbOras.SelectedText = "Berlin";
+                cbTempUnit.Text = "Celsius";
+                cbOras.Text = "Berlin";
                 rep++;
             }
 
             var apiInstance = new APIsApi();
             InlineResponse200 resultReal;
-            InlineResponse2003 resultAstro;
+            InlineResponse2001 resultForecast;
             try
             {
                 resultReal = apiInstance.RealtimeWeather(cbOras.Text);
-                Debug.WriteLine(resultReal);
+                tbTempActual.Text=resultReal.Current.TempC.ToString()+ " °C";
             }
             catch (Exception f)
             {
                 Debug.Print("Exception when calling APIsApi.RealtimeWeather: " + f.Message);
+            }
+
+            try
+            {
+                resultForecast = apiInstance.ForecastWeather(cbOras.Text,3,DateTime.Parse(date),12);
+                Debug.WriteLine(resultForecast);
+            }
+            catch (Exception f)
+            {
+                Debug.Print("Exception when calling APIsApi.ForecastWeather: " + f.Message);
             }
         }
 
@@ -93,12 +109,9 @@ namespace WeatherForecastSiemens
         private void cbOras_SelectedIndexChanged(object sender, EventArgs e)
         {
             var apiInstance = new APIsApi();
-            InlineResponse200 resultReal;
             InlineResponse2003 resultAstro;
             try
             {
-                //resultReal = apiInstance.RealtimeWeather(cbOras.Text);
-                //Debug.WriteLine(resultReal);
                 resultAstro = apiInstance.Astronomy(cbOras.Text, DateTime.Parse(date));
                 tbAstro.Text="City: "+resultAstro.Location.Name+Environment.NewLine+
                     "Country: "+resultAstro.Location.Country+Environment.NewLine+
@@ -110,7 +123,7 @@ namespace WeatherForecastSiemens
             }
             catch (Exception f)
             {
-                Debug.Print("Exception when calling APIsApi.RealtimeWeather: " + f.Message);
+                Debug.Print("Exception when calling APIsApi.Astronomy: " + f.Message);
             }
         }
     }
