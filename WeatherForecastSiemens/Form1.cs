@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using IO.Swagger.Api;
 using IO.Swagger.Client;
 using IO.Swagger.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace WeatherForecastSiemens
 {
@@ -18,35 +20,85 @@ namespace WeatherForecastSiemens
     {
         string[] unitM = { "Celsius", "Fahrenheit" };
         string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+        string[] city = { "Berlin","Bucharest","Paris","Rome" };
+        string date;
         public Form1()
         {
             InitializeComponent();
+            date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+            Timer t= new Timer();
+            t.Interval = 1000;
+        }
+
+        private void t_Tick(object sender,EventArgs e)
+        {
+            date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+            this.Form1_Load(sender,e);
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Configuration.Default.ApiKey.Add("key", "5be527fd5935439abbc73455231107");
             this.cbTempUnit.DataSource = unitM;
             cbTempUnit.SelectedItem = null;
             cbTempUnit.SelectedText = "Celsius";
 
-            Configuration.Default.ApiKey.Add("key", "5be527fd5935439abbc73455231107");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("key", "Bearer");
+            this.cbOras.DataSource = city;
+            cbOras.SelectedItem = null;
+            cbOras.SelectedText = "Bucharest";
 
             var apiInstance = new APIsApi();
-            var q = "Bucharest";  // string | Pass US Zipcode, UK Postcode, Canada Postalcode, IP address, Latitude/Longitude (decimal degree) or city name. Visit [request parameter section](https://www.weatherapi.com/docs/#intro-request) to learn more.
-            DateTime dt = DateTime.Parse("2023 - 07 - 11");  // DateTime? | Date on or after 1st Jan, 2015 in yyyy-MM-dd format
-            int days = 7;  // int? | Number of days of weather forecast. Value ranges from 1 to 14
-            int hour = 12;
-
+            InlineResponse200 resultReal;
+            InlineResponse2003 resultAstro;
             try
             {
-                InlineResponse2001 result = apiInstance.ForecastWeather(q,days,dt,hour);
-                Debug.WriteLine(result);
+                resultReal = apiInstance.RealtimeWeather(cbOras.Text);
+                Debug.WriteLine(resultReal);
+                CurrentWeather nou = JsonConvert.DeserializeObject<CurrentWeather>(resultReal.ToString());
+                tbAstro.Text = nou.Loc.Name;
+                //resultAstro = apiInstance.Astronomy(cbOras.Text, dt);
+                //tbAstro.Text = resultAstro.ToString();
             }
             catch (Exception f)
             {
-                Debug.Print("Exception when calling APIsApi.Astronomy: " + f.Message);
+                Debug.Print("Exception when calling APIsApi.RealtimeWeather: " + f.Message);
+            }
+        }
+
+        private void cbTempUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var apiInstance = new APIsApi();
+            InlineResponse200 resultReal;
+            InlineResponse2003 resultAstro;
+            try
+            {
+                //resultReal = apiInstance.RealtimeWeather(cbOras.Text);
+                //Debug.WriteLine(resultReal);
+                resultAstro = apiInstance.Astronomy(cbOras.Text, DateTime.Parse(date));
+                tbAstro.Text = resultAstro.ToString();
+            }
+            catch (Exception f)
+            {
+                Debug.Print("Exception when calling APIsApi.RealtimeWeather: " + f.Message);
+            }
+        }
+
+        private void cbOras_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var apiInstance = new APIsApi();
+            InlineResponse200 resultReal;
+            InlineResponse2003 resultAstro;
+            try
+            {
+                //resultReal = apiInstance.RealtimeWeather(cbOras.Text);
+                //Debug.WriteLine(resultReal);
+                resultAstro = apiInstance.Astronomy(cbOras.Text, DateTime.Parse(date));
+                tbAstro.Text=resultAstro.ToString();
+            }
+            catch (Exception f)
+            {
+                Debug.Print("Exception when calling APIsApi.RealtimeWeather: " + f.Message);
             }
         }
     }

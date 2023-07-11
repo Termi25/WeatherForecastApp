@@ -40,6 +40,10 @@
             this.MeasureUnit2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbTempUnit = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.cbOras = new System.Windows.Forms.ComboBox();
+            this.tbAstro = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // lvCurrentDay
@@ -111,7 +115,7 @@
             // AvgTempDay
             // 
             this.AvgTempDay.Text = "Average Temperature";
-            this.AvgTempDay.Width = 101;
+            this.AvgTempDay.Width = 129;
             // 
             // MeasureUnit2
             // 
@@ -125,10 +129,11 @@
             this.cbTempUnit.Items.AddRange(new object[] {
             "Celsius (C)",
             "Fahrenheit"});
-            this.cbTempUnit.Location = new System.Drawing.Point(43, 13);
+            this.cbTempUnit.Location = new System.Drawing.Point(879, 57);
             this.cbTempUnit.Name = "cbTempUnit";
-            this.cbTempUnit.Size = new System.Drawing.Size(121, 33);
+            this.cbTempUnit.Size = new System.Drawing.Size(193, 33);
             this.cbTempUnit.TabIndex = 4;
+            this.cbTempUnit.SelectedIndexChanged += new System.EventHandler(this.cbTempUnit_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -140,11 +145,49 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Weather in this period";
             // 
+            // cbOras
+            // 
+            this.cbOras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbOras.FormattingEnabled = true;
+            this.cbOras.Location = new System.Drawing.Point(879, 18);
+            this.cbOras.Name = "cbOras";
+            this.cbOras.Size = new System.Drawing.Size(193, 33);
+            this.cbOras.TabIndex = 6;
+            this.cbOras.SelectedIndexChanged += new System.EventHandler(this.cbOras_SelectedIndexChanged);
+            // 
+            // tbAstro
+            // 
+            this.tbAstro.Location = new System.Drawing.Point(818, 146);
+            this.tbAstro.Multiline = true;
+            this.tbAstro.Name = "tbAstro";
+            this.tbAstro.Size = new System.Drawing.Size(254, 260);
+            this.tbAstro.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(818, 122);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 16);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Astronomy";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(818, 423);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(254, 22);
+            this.dateTimePicker1.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1084, 457);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tbAstro);
+            this.Controls.Add(this.cbOras);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbTempUnit);
             this.Controls.Add(this.lv7Days);
@@ -173,6 +216,10 @@
         private System.Windows.Forms.ColumnHeader MeasureUnit2;
         private System.Windows.Forms.ComboBox cbTempUnit;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbOras;
+        private System.Windows.Forms.TextBox tbAstro;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 
