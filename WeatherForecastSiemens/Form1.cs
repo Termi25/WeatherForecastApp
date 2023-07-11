@@ -109,7 +109,7 @@ namespace WeatherForecastSiemens
                 for (int i = 0; i < 23; i++)
                 {
                     ListViewItem item = new ListViewItem(resultForecast.Location.Localtime);
-                    ListViewItem item2 = new ListViewItem(resultForecast.Location.Localtime);
+                    ListViewItem item2 = new ListViewItem(days[i]);
                     if (cbTempUnit.Text == "Celsius")
                     {
                         item.SubItems.Add(resultForecast.Current.TempC.ToString() + " °C");
