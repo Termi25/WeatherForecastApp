@@ -43,6 +43,12 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tbHumidity = new System.Windows.Forms.TextBox();
+            this.tbWindSpeed = new System.Windows.Forms.TextBox();
+            this.tbPrecipitation = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,10 +58,10 @@
             this.TimeOfDay,
             this.Temperature});
             this.lvCurrentDay.HideSelection = false;
-            this.lvCurrentDay.Location = new System.Drawing.Point(43, 146);
+            this.lvCurrentDay.Location = new System.Drawing.Point(43, 283);
             this.lvCurrentDay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lvCurrentDay.Name = "lvCurrentDay";
-            this.lvCurrentDay.Size = new System.Drawing.Size(277, 260);
+            this.lvCurrentDay.Size = new System.Drawing.Size(257, 215);
             this.lvCurrentDay.TabIndex = 0;
             this.lvCurrentDay.UseCompatibleStateImageBehavior = false;
             this.lvCurrentDay.View = System.Windows.Forms.View.Details;
@@ -76,7 +82,7 @@
             this.tbTempActual.Location = new System.Drawing.Point(44, 60);
             this.tbTempActual.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbTempActual.Name = "tbTempActual";
-            this.tbTempActual.Size = new System.Drawing.Size(135, 45);
+            this.tbTempActual.Size = new System.Drawing.Size(172, 45);
             this.tbTempActual.TabIndex = 1;
             // 
             // lv7Days
@@ -88,7 +94,7 @@
             this.lv7Days.Location = new System.Drawing.Point(327, 146);
             this.lv7Days.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lv7Days.Name = "lv7Days";
-            this.lv7Days.Size = new System.Drawing.Size(313, 133);
+            this.lv7Days.Size = new System.Drawing.Size(313, 227);
             this.lv7Days.TabIndex = 3;
             this.lv7Days.UseCompatibleStateImageBehavior = false;
             this.lv7Days.View = System.Windows.Forms.View.Details;
@@ -110,10 +116,10 @@
             this.cbTempUnit.Items.AddRange(new object[] {
             "Celsius (C)",
             "Fahrenheit"});
-            this.cbTempUnit.Location = new System.Drawing.Point(455, 60);
+            this.cbTempUnit.Location = new System.Drawing.Point(330, 71);
             this.cbTempUnit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTempUnit.Name = "cbTempUnit";
-            this.cbTempUnit.Size = new System.Drawing.Size(193, 33);
+            this.cbTempUnit.Size = new System.Drawing.Size(318, 33);
             this.cbTempUnit.TabIndex = 4;
             this.cbTempUnit.SelectedIndexChanged += new System.EventHandler(this.cbTempUnit_SelectedIndexChanged);
             // 
@@ -131,16 +137,16 @@
             // 
             this.cbOras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbOras.FormattingEnabled = true;
-            this.cbOras.Location = new System.Drawing.Point(455, 11);
+            this.cbOras.Location = new System.Drawing.Point(330, 21);
             this.cbOras.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbOras.Name = "cbOras";
-            this.cbOras.Size = new System.Drawing.Size(193, 33);
+            this.cbOras.Size = new System.Drawing.Size(318, 33);
             this.cbOras.TabIndex = 6;
             this.cbOras.SelectedIndexChanged += new System.EventHandler(this.cbOras_SelectedIndexChanged);
             // 
             // tbAstro
             // 
-            this.tbAstro.Location = new System.Drawing.Point(327, 305);
+            this.tbAstro.Location = new System.Drawing.Point(326, 397);
             this.tbAstro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbAstro.Multiline = true;
             this.tbAstro.Name = "tbAstro";
@@ -151,7 +157,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(327, 283);
+            this.label3.Location = new System.Drawing.Point(326, 375);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 20);
             this.label3.TabIndex = 8;
@@ -167,7 +173,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(199, 52);
+            this.pictureBox1.Location = new System.Drawing.Point(223, 55);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(77, 62);
@@ -178,18 +184,78 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(44, 119);
+            this.label1.Location = new System.Drawing.Point(39, 254);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 25);
             this.label1.TabIndex = 11;
             this.label1.Text = "Hourly weather";
             // 
+            // tbHumidity
+            // 
+            this.tbHumidity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbHumidity.Location = new System.Drawing.Point(43, 121);
+            this.tbHumidity.Name = "tbHumidity";
+            this.tbHumidity.Size = new System.Drawing.Size(164, 30);
+            this.tbHumidity.TabIndex = 12;
+            // 
+            // tbWindSpeed
+            // 
+            this.tbWindSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWindSpeed.Location = new System.Drawing.Point(43, 162);
+            this.tbWindSpeed.Name = "tbWindSpeed";
+            this.tbWindSpeed.Size = new System.Drawing.Size(130, 30);
+            this.tbWindSpeed.TabIndex = 13;
+            // 
+            // tbPrecipitation
+            // 
+            this.tbPrecipitation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPrecipitation.Location = new System.Drawing.Point(43, 205);
+            this.tbPrecipitation.Name = "tbPrecipitation";
+            this.tbPrecipitation.Size = new System.Drawing.Size(130, 30);
+            this.tbPrecipitation.TabIndex = 14;
+            // 
+            // panel4
+            // 
+            this.panel4.AutoSize = true;
+            this.panel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel4.Location = new System.Drawing.Point(213, 121);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(87, 25);
+            this.panel4.TabIndex = 15;
+            this.panel4.Text = "Humidity";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(179, 162);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(121, 25);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Wind Speed";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(179, 205);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(118, 25);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Precipitation";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 438);
+            this.ClientSize = new System.Drawing.Size(684, 524);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.tbPrecipitation);
+            this.Controls.Add(this.tbWindSpeed);
+            this.Controls.Add(this.tbHumidity);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dateTimePicker1);
@@ -228,6 +294,12 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbHumidity;
+        private System.Windows.Forms.TextBox tbWindSpeed;
+        private System.Windows.Forms.TextBox tbPrecipitation;
+        private System.Windows.Forms.Label panel4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 

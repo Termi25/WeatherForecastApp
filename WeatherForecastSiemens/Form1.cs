@@ -23,8 +23,6 @@ namespace WeatherForecastSiemens
         string[] city = { "Berlin","Bucharest","Paris","Rome" };
         string date;
         int rep = 0;
-        int citychange;
-        int tempchange;
         CurrentWeather nou;
         public Form1()
         {
@@ -72,31 +70,41 @@ namespace WeatherForecastSiemens
             try
             {
                 resultReal = apiInstance.RealtimeWeather(cbOras.Text);
-                tbTempActual.Text=resultReal.Current.TempC.ToString()+ " °C";
+                if (cbTempUnit.Text == "Celsius")
+                {
+                    tbTempActual.Text = resultReal.Current.TempC.ToString() + " °C";
+                }
+                else
+                {
+                    tbTempActual.Text = resultReal.Current.TempF.ToString() + " °F";
+                }
+                tbHumidity.Text=resultReal.Current.Humidity.ToString();
+                tbWindSpeed.Text=resultReal.Current.WindKph.ToString()+" km/h";
+                tbPrecipitation.Text = resultReal.Current.PrecipMm.ToString()+" mm";
             }
             catch (Exception f)
             {
                 Debug.Print("Exception when calling APIsApi.RealtimeWeather: " + f.Message);
             }
-            addList7Days();
+            addCurrentDay();
         }
 
-        private void addList7Days()
+        private void addCurrentDay()
         {
             var apiInstance = new APIsApi();
             InlineResponse2001 resultForecast;
             try
             {
-                foreach (ListViewItem itm in lv7Days.Items)
+                foreach (ListViewItem itm in lvCurrentDay.Items)
                 {
                     itm.Remove();
                 }
-                for (int i = 0; i < 7; i++)
+                resultForecast = apiInstance.ForecastWeather(cbOras.Text, 1, DateTime.Parse(date));
+                for (int i = 0; i < 23; i++)
                 {
-                    resultForecast = apiInstance.ForecastWeather(cbOras.Text, i+1, DateTime.Parse(date), 12);
                     ListViewItem item = new ListViewItem(resultForecast.Location.Localtime);
                     item.SubItems.Add(resultForecast.Current.TempC.ToString());
-                    lv7Days.Items.Add(item);
+                    lvCurrentDay.Items.Add(item);
                 }
             }
             catch (Exception f)
@@ -111,8 +119,18 @@ namespace WeatherForecastSiemens
             InlineResponse200 resultReal;
             try
             {
-                //resultReal = apiInstance.RealtimeWeather(cbOras.Text);
-                //Debug.WriteLine(resultReal);
+                resultReal = apiInstance.RealtimeWeather(cbOras.Text);
+                if (cbTempUnit.Text == "Celsius")
+                {
+                    tbTempActual.Text = resultReal.Current.TempC.ToString() + " °C";
+                }
+                else
+                {
+                    tbTempActual.Text = resultReal.Current.TempF.ToString() + " °F";
+                }
+                tbHumidity.Text = resultReal.Current.Humidity.ToString();
+                tbWindSpeed.Text = resultReal.Current.WindKph.ToString() + " km/h";
+                tbPrecipitation.Text = resultReal.Current.PrecipMm.ToString() + " mm";
             }
             catch (Exception f)
             {
@@ -123,6 +141,26 @@ namespace WeatherForecastSiemens
         private void cbOras_SelectedIndexChanged(object sender, EventArgs e)
         {
             var apiInstance = new APIsApi();
+            InlineResponse200 resultReal;
+            try
+            {
+                resultReal = apiInstance.RealtimeWeather(cbOras.Text);
+                if (cbTempUnit.Text == "Celsius")
+                {
+                    tbTempActual.Text = resultReal.Current.TempC.ToString() + " °C";
+                }
+                else
+                {
+                    tbTempActual.Text = resultReal.Current.TempF.ToString() + " °F";
+                }
+                tbHumidity.Text = resultReal.Current.Humidity.ToString();
+                tbWindSpeed.Text = resultReal.Current.WindKph.ToString() + " km/h";
+                tbPrecipitation.Text = resultReal.Current.PrecipMm.ToString() + " mm";
+            }
+            catch (Exception f)
+            {
+                Debug.Print("Exception when calling APIsApi.RealtimeWeather: " + f.Message);
+            }
             InlineResponse2003 resultAstro;
             try
             {
